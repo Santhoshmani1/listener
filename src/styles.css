@@ -1,0 +1,100 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+:root {
+  --ubuntutheme-bgcol: #4b082c;
+  --ubuntutheme-text: white;
+
+  --darktheme-bgcol: black;
+  --dark-theme-text: #ffffff;
+
+  --lighttheme-bgcol: #fff;
+  --lighttheme-text: black;
+}
+
+body {
+  background-color: var(--darktheme-bgcol);
+  color: var(--dark-theme-text);
+}
+
+button {
+  position: relative;
+  top: 10px;
+  color: white;
+  background-color: #069aed;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 2px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#song-name {
+  color: #069aed;
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  top: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 10px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.song {
+  font-size: 18px;
+  font-weight: bold;
+  color: #069aed;
+  margin-bottom: 10px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+audio {
+  width: 100%;
+}
+
+audio:hover,
+audio:focus,
+audio:active {
+  -webkit-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+#visualiser-canvas {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#main-song-audio {
+  width: 50%;
+  margin: 50px auto;
+  display: block;
+}
