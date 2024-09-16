@@ -73,3 +73,38 @@ function visualiseSong() {
 container.addEventListener("click", visualiseSong);
 audio.addEventListener("play", visualiseSong);
 
+async function initializePlayer() {
+  const songs = await window.electronAPI.getSongs();
+  console.log(songs);
+
+  let currentSongIndex = 0;
+
+  function loadSong(index) {
+    if (index >= 0 && index < songs.length) {
+      currentSongIndex = index;
+      audio.src = `songs/${songs[currentSongIndex]}`;
+      const decodedSongName = decodeURIComponent(songs[currentSongIndex].split(".")[0]);
+      songName.textContent = decodedSongName.replace(/%20/g, " ");
+      audio.play();
+    }
+  }
+
+  function playNextSong() {
+    if (currentSongIndex < songs.length - 1) {
+      loadSong(currentSongIndex + 1);
+    }
+  }
+
+  function playPreviousSong() {
+    if (currentSongIndex > 0) {
+      loadSong(currentSongIndex - 1);
+    }
+  }
+
+  document.getElementById("next-button").addEventListener("click", playNextSong);
+  document.getElementById("prev-button").addEventListener("click", playPreviousSong);
+
+  loadSong(currentSongIndex);
+}
+
+initializePlayer();

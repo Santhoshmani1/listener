@@ -22,18 +22,32 @@ body {
 }
 
 button {
-  position: relative;
-  top: 10px;
+  position: absolute;
+  top: 130px;
   color: white;
-  background-color: #069aed;
+  background-color: #0b7dda;
   border: none;
-  padding: 10px 20px;
+  padding: 18px 40px;
   font-size: 16px;
   border-radius: 12px;
 }
 
+button:hover {
+  background-color: #069aed;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+button#prev-button {
+  left: 200px;
+}
+
+button#next-button {
+  right: 240px;
+}
+
 h1 {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
   color: white;
   margin-bottom: 10px;

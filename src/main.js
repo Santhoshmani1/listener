@@ -1,8 +1,9 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require("electron/main");
+const { app, BrowserWindow, ipcMain } = require("electron/main");
 const path = require("node:path");
+const fs = require("node:fs");
 
 const createWindow = () => {
   // Create the browser window.
@@ -12,6 +13,7 @@ const createWindow = () => {
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
+      enableBlinkFeatures: true,
       preload: path.join(__dirname, "preload.js"),
     },
   });
@@ -41,3 +43,10 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
+
+// Get the Songs list from the songs directory
+ipcMain.handle('get-songs', async () => {
+  const songsDirectory = path.join(__dirname, 'songs');
+  const files = await fs.promises.readdir(songsDirectory);
+  return files;
+});
