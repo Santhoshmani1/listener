@@ -1,0 +1,19 @@
+{
+  "name": "listener",
+  "version": "0.0.1",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Santhoshmani1",
+    "url": "https://github.com/Santhoshmani1"
+  },
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "electron": "^32.1.0"
+  }
+}
