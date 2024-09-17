@@ -1,3 +1,5 @@
+import handleKeyPresses from "./helpers/handleKeyPresses.js";
+
 const canvas = document.getElementById("visualiser-canvas");
 const container = document.body;
 const audio = document.querySelector("audio");
@@ -20,14 +22,12 @@ let bufferLength, dataArray;
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 
-
-
 // Function to generate random color for the bars with preference for blue > red > green
 function generateRandomColor() {
   return `rgb(${Math.random() * 200}, ${Math.random() * 150}, ${Math.random() * 255})`;
 }
 
-// Function to draw the visualiser as a bar graph. 
+// Function to draw the visualiser as a bar graph.
 function drawRectangle() {
   requestAnimationFrame(drawRectangle);
 
@@ -43,11 +43,10 @@ function drawRectangle() {
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i] * 5;
     ctx.fillStyle = generateRandomColor(); // generate random color for the bars
-    ctx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2); // fill the bars 
+    ctx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight / 2); // fill the bars
     x += barWidth + 1;
   }
 }
-
 
 function visualiseSong() {
   audio.play();
@@ -62,16 +61,12 @@ function visualiseSong() {
   analyser = audioCtx.createAnalyser();
   audioSource.connect(analyser);
   audioSource.connect(audioCtx.destination);
-  analyser.fftSize = 2048; // Fast Fourier Transform window size for getting frequency domain data 
+  analyser.fftSize = 2048; // Fast Fourier Transform window size for getting frequency domain data
   bufferLength = analyser.frequencyBinCount; // Number of data values you will have to play with for the visualiser defaults to fftSize/2
-  dataArray = new Uint8Array(bufferLength); // Unsigned integer array to store the frequency data 
+  dataArray = new Uint8Array(bufferLength); // Unsigned integer array to store the frequency data
 
   drawRectangle();
 }
-
-
-container.addEventListener("click", visualiseSong);
-audio.addEventListener("play", visualiseSong);
 
 async function initializePlayer() {
   const songs = await window.electronAPI.getSongs();
@@ -83,7 +78,9 @@ async function initializePlayer() {
     if (index >= 0 && index < songs.length) {
       currentSongIndex = index;
       audio.src = `songs/${songs[currentSongIndex]}`;
-      const decodedSongName = decodeURIComponent(songs[currentSongIndex].split(".")[0]);
+      const decodedSongName = decodeURIComponent(
+        songs[currentSongIndex].split(".")[0],
+      );
       songName.textContent = decodedSongName.replace(/%20/g, " ");
       audio.play();
     }
@@ -101,10 +98,17 @@ async function initializePlayer() {
     }
   }
 
-  document.getElementById("next-button").addEventListener("click", playNextSong);
-  document.getElementById("prev-button").addEventListener("click", playPreviousSong);
+  document
+    .getElementById("next-button")
+    .addEventListener("click", playNextSong);
+  document
+    .getElementById("prev-button")
+    .addEventListener("click", playPreviousSong);
 
   loadSong(currentSongIndex);
 }
 
+container.addEventListener("click", visualiseSong);
+container.addEventListener("keydown", (e) => handleKeyPresses(audio, e));
+audio.addEventListener("play", visualiseSong);
 initializePlayer();
