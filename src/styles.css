@@ -22,8 +22,6 @@ body {
 }
 
 button {
-  position: absolute;
-  top: 130px;
   color: white;
   background-color: #0b7dda;
   border: none;
@@ -39,11 +37,14 @@ button:hover {
 }
 
 button#prev-button {
+  position: absolute;
   left: 200px;
-}
+  margin-top: 20px;}
 
 button#next-button {
+  position: absolute;
   right: 240px;
+  margin-top: 20px;
 }
 
 h1 {
@@ -66,7 +67,7 @@ h2 {
 #song-name {
   color: #069aed;
   text-align: center;
-  font-size: 24px;
+  font-size: 30px;
   position: relative;
   top: 10px;
 }
@@ -99,12 +100,10 @@ audio:active {
 }
 
 #visualiser-canvas {
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width:60vw;
+  height: 70vh;
+  margin: auto;
+  display: block;
 }
 
 #main-song-audio {
