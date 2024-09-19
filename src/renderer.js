@@ -1,4 +1,4 @@
-import handleKeyPresses from "./helpers/handleKeyPresses.js";
+import { generateRandomColor, handleKeyPresses } from "./helpers/index.js";
 
 const canvas = document.getElementById("visualiser-canvas");
 const container = document.body;
@@ -21,11 +21,6 @@ let audioSource, analyser;
 let bufferLength, dataArray;
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
-
-// Function to generate random color for the bars with preference for blue > red > green
-function generateRandomColor() {
-  return `rgb(${Math.random() * 200}, ${Math.random() * 150}, ${Math.random() * 255})`;
-}
 
 // Function to draw the visualiser as a bar graph.
 function drawRectangle() {
@@ -61,7 +56,7 @@ function visualiseSong() {
   analyser = audioCtx.createAnalyser();
   audioSource.connect(analyser);
   audioSource.connect(audioCtx.destination);
-  analyser.fftSize = 2048; // Fast Fourier Transform window size for getting frequency domain data
+  analyser.fftSize = 1024; // Fast Fourier Transform window size for getting frequency domain data
   bufferLength = analyser.frequencyBinCount; // Number of data values you will have to play with for the visualiser defaults to fftSize/2
   dataArray = new Uint8Array(bufferLength); // Unsigned integer array to store the frequency data
 
