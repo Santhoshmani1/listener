@@ -39,7 +39,8 @@ button:hover {
 button#prev-button {
   position: absolute;
   left: 200px;
-  margin-top: 20px;}
+  margin-top: 20px;
+}
 
 button#next-button {
   position: absolute;
@@ -100,7 +101,7 @@ audio:active {
 }
 
 #visualiser-canvas {
-  width:60vw;
+  width: 60vw;
   height: 70vh;
   margin: auto;
   display: block;

@@ -20,7 +20,6 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile("src/index.html");
-
 };
 
 // This method will be called when Electron has finished
@@ -43,10 +42,9 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-
 // Get the Songs list from the songs directory
-ipcMain.handle('get-songs', async () => {
-  const songsDirectory = path.join(__dirname, 'songs');
+ipcMain.handle("get-songs", async () => {
+  const songsDirectory = path.join(__dirname, "songs");
   const files = await fs.promises.readdir(songsDirectory);
   return files;
 });
