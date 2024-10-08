@@ -1,4 +1,5 @@
 import { generateRandomColor, handleKeyPresses } from "./helpers/index.js";
+import renderDownloads from "./sidebar/RenderDownloads.js";
 
 const canvas = document.getElementById("visualiser-canvas");
 const container = document.body;
@@ -45,7 +46,7 @@ function drawRectangle() {
 
 function visualiseSong() {
   audio.play();
-
+  
   // Check if audioSource already exists
   if (!audioSource) {
     audioSource = audioCtx.createMediaElementSource(audio);
@@ -103,7 +104,10 @@ async function initializePlayer() {
   loadSong(currentSongIndex);
 }
 
+renderDownloads(await window?.electronAPI.getSongs());
+
 container.addEventListener("click", visualiseSong);
 container.addEventListener("keydown", (e) => handleKeyPresses(audio, e));
+container.addEventListener("keyup",  (e) => null)
 audio.addEventListener("play", visualiseSong);
 initializePlayer();
